@@ -17,32 +17,41 @@ export default class Bishop extends Piece {
         let candidatePosition = new Square(positionHelper.row, positionHelper.col);
         // forwards up diagonal
         while (candidatePosition.row < gameSettings.BOARD_SIZE - 1 && candidatePosition.col < gameSettings.BOARD_SIZE - 1) {
-            candidatePosition.row++;
-            candidatePosition.col++;
+            const pieceNearBishop: Piece | undefined = board.getPiece(new Square(++candidatePosition.row, ++candidatePosition.col));
+            if (pieceNearBishop) {
+                break;
+            }
             availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
         candidatePosition = new Square(positionHelper.row, positionHelper.col);
         // forwards down diagonal
+
         while (candidatePosition.row > 0 && candidatePosition.col > 0) {
-            candidatePosition.row--;
-            candidatePosition.col--;
+            const pieceNearBishop: Piece | undefined = board.getPiece(new Square(--candidatePosition.row, --candidatePosition.col));
+            if (pieceNearBishop) {
+                break;
+            }
             availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
         candidatePosition = new Square(positionHelper.row, positionHelper.col);
         // backwards up diagonal
         while (candidatePosition.row < gameSettings.BOARD_SIZE - 1 && candidatePosition.col > 0) {
-            candidatePosition.row++;
-            candidatePosition.col--;
+            const pieceNearBishop: Piece | undefined = board.getPiece(new Square(++candidatePosition.row, --candidatePosition.col));
+            if (pieceNearBishop) {
+                break;
+            }
             availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
         candidatePosition = new Square(positionHelper.row, positionHelper.col);
         // backwards down diagonal
         while (candidatePosition.row > 0 && candidatePosition.col < gameSettings.BOARD_SIZE - 1) {
-            candidatePosition.row--;
-            candidatePosition.col++;
+            const pieceNearBishop: Piece | undefined = board.getPiece(new Square(--candidatePosition.row, ++candidatePosition.col));
+            if (pieceNearBishop) {
+                break;
+            }
             availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
