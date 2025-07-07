@@ -14,13 +14,13 @@ export default class Rook extends Piece {
         let availableMoves: Square[] = [];
         const rookCurrentPosition: Square = board.findPiece(this);
         for (let i = 0; i < gameSettings.BOARD_SIZE; i++) {
-            if(i != rookCurrentPosition.row) {
+            if (i != rookCurrentPosition.row) {
                 availableMoves.push(new Square(i,  rookCurrentPosition.col));
             }
         }
 
         for (let j = 0; j < gameSettings.BOARD_SIZE; j++) {
-            if( j != rookCurrentPosition.col) {
+            if (j != rookCurrentPosition.col) {
                 availableMoves.push(new Square(rookCurrentPosition.row,  j));
             }
         }
