@@ -13,16 +13,43 @@ export default class Rook extends Piece {
 
         let availableMoves: Square[] = [];
         const rookCurrentPosition: Square = board.findPiece(this);
-        for (let i = 0; i < gameSettings.BOARD_SIZE; i++) {
-            if (i != rookCurrentPosition.row) {
-                availableMoves.push(new Square(i,  rookCurrentPosition.col));
+
+        for (let i = rookCurrentPosition.row + 1; i < gameSettings.BOARD_SIZE; i++) {
+            const pieceNearRook: Piece | undefined = board.getPiece(new Square(i, rookCurrentPosition.col));
+            if (pieceNearRook) {
+                break;
             }
+
+            availableMoves.push(new Square(i,  rookCurrentPosition.col));
+
         }
 
-        for (let j = 0; j < gameSettings.BOARD_SIZE; j++) {
-            if (j != rookCurrentPosition.col) {
-                availableMoves.push(new Square(rookCurrentPosition.row,  j));
+        for (let i = rookCurrentPosition.row - 1; i >= 0; i--) {
+            const pieceNearRook: Piece | undefined = board.getPiece(new Square(i, rookCurrentPosition.col));
+            if (pieceNearRook) {
+                break;
             }
+
+            availableMoves.push(new Square(i,  rookCurrentPosition.col));
+
+        }
+
+        for (let j = rookCurrentPosition.col + 1; j < gameSettings.BOARD_SIZE; j++) {
+            const pieceNearRook: Piece | undefined = board.getPiece(new Square(rookCurrentPosition.row, j));
+            if (pieceNearRook) {
+                break;
+            }
+
+            availableMoves.push(new Square(rookCurrentPosition.row,  j));
+        }
+
+        for (let j = rookCurrentPosition.col - 1; j >= 0; j--) {
+            const pieceNearRook: Piece | undefined = board.getPiece(new Square(rookCurrentPosition.row, j));
+            if (pieceNearRook) {
+                break;
+            }
+
+            availableMoves.push(new Square(rookCurrentPosition.row,  j));
         }
 
         return availableMoves;
