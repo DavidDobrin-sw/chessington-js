@@ -14,16 +14,16 @@ export default class Pawn extends Piece {
 
         switch (this.player) {
             case Player.WHITE:
-                const squareAboveThePawnPiece: Piece | undefined = board.getPiece(new Square(pawnCurrentPosition.row + 1, pawnCurrentPosition.col));
+                const pieceAboveThePawn: Piece | undefined = board.getPiece(new Square(pawnCurrentPosition.row + 1, pawnCurrentPosition.col));
 
-                if (!squareAboveThePawnPiece) {
+                if (!pieceAboveThePawn) {
                     availableMoves.push(new Square(pawnCurrentPosition.row + 1, pawnCurrentPosition.col));
                 }
                 break;
             case Player.BLACK:
-                const squareUnderThePawnPiece: Piece | undefined =  board.getPiece(new Square(pawnCurrentPosition.row - 1, pawnCurrentPosition.col));
+                const pieceUnderThePawn: Piece | undefined =  board.getPiece(new Square(pawnCurrentPosition.row - 1, pawnCurrentPosition.col));
 
-                if (!squareUnderThePawnPiece) {
+                if (!pieceUnderThePawn) {
                     availableMoves.push(new Square(pawnCurrentPosition.row - 1, pawnCurrentPosition.col));
                 }
         }
