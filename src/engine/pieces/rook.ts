@@ -19,7 +19,6 @@ export default class Rook extends Piece {
         }
 
         return pieceNearRook;
-
     }
 
     public getAvailableMoves(board: Board) {
