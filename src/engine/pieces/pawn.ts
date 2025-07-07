@@ -19,7 +19,7 @@ export default class Pawn extends Piece {
 
                 if (pawnCurrentPosition.row === 1) {
                     const pieceAboveWithTwoSquares: Piece | undefined = board.getPiece(new Square(pawnCurrentPosition.row + 2, pawnCurrentPosition.col));
-                    if(!pieceAboveWithTwoSquares && !pieceAboveThePawn) {
+                    if (!pieceAboveWithTwoSquares && !pieceAboveThePawn) {
                         availableMoves.push(new Square(pawnCurrentPosition.row + 2, pawnCurrentPosition.col));
                     }
                 }
@@ -33,7 +33,7 @@ export default class Pawn extends Piece {
 
                 if (pawnCurrentPosition.row === 6) {
                     const pieceUnderWithTwoSquares: Piece | undefined = board.getPiece(new Square(pawnCurrentPosition.row - 2, pawnCurrentPosition.col));
-                    if(!pieceUnderWithTwoSquares && !pieceUnderThePawn) {
+                    if (!pieceUnderWithTwoSquares && !pieceUnderThePawn) {
                         availableMoves.push(new Square(pawnCurrentPosition.row - 2, pawnCurrentPosition.col));
                     }
                 }
