@@ -2,6 +2,7 @@ import Piece from './piece';
 import Player from '../player';
 import Board from '../board';
 import Square from "../square";
+import gameSettings from "../gameSettings";
 
 export default class Pawn extends Piece {
 
@@ -15,6 +16,9 @@ export default class Pawn extends Piece {
 
         switch (this.player) {
             case Player.WHITE:
+                if (!this.isSquareInBounds(new Square(pawnCurrentPosition.row + 1, pawnCurrentPosition.col))){
+                    break;
+                }
                 const pieceAboveThePawn: Piece | undefined = board.getPiece(new Square(pawnCurrentPosition.row + 1, pawnCurrentPosition.col));
 
                 if (pawnCurrentPosition.row === 1) {
@@ -29,6 +33,9 @@ export default class Pawn extends Piece {
                 }
                 break;
             case Player.BLACK:
+                if (!this.isSquareInBounds(new Square(pawnCurrentPosition.row - 1, pawnCurrentPosition.col))){
+                    break;
+                }
                 const pieceUnderThePawn: Piece | undefined =  board.getPiece(new Square(pawnCurrentPosition.row - 1, pawnCurrentPosition.col));
 
                 if (pawnCurrentPosition.row === 6) {
@@ -46,5 +53,9 @@ export default class Pawn extends Piece {
 
 
         return availableMoves;
+    }
+
+    private isSquareInBounds(position: Square): boolean {
+        return position.row >= 0 && position.col >= 0 && position.row < gameSettings.BOARD_SIZE && position.col < gameSettings.BOARD_SIZE;
     }
 }
