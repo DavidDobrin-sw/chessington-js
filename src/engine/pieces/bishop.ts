@@ -17,32 +17,40 @@ export default class Bishop extends Piece {
         let bishopCurrentPosition = new Square(bishopInitialPosition.row, bishopInitialPosition.col);
         // forwards up diagonal
         while (bishopCurrentPosition.row < gameSettings.BOARD_SIZE - 1 && bishopCurrentPosition.col < gameSettings.BOARD_SIZE - 1) {
-            bishopCurrentPosition.row++;
-            bishopCurrentPosition.col++;
+            const pieceNearBishop: Piece | undefined = board.getPiece(new Square(++bishopCurrentPosition.row, ++bishopCurrentPosition.col));
+            if (pieceNearBishop) {
+                break;
+            }
             availableMoves.push(new Square(bishopCurrentPosition.row, bishopCurrentPosition.col));
         }
 
         bishopCurrentPosition = new Square(bishopInitialPosition.row, bishopInitialPosition.col);
         // forwards down diagonal
         while (bishopCurrentPosition.row > 0 && bishopCurrentPosition.col > 0) {
-            bishopCurrentPosition.row--;
-            bishopCurrentPosition.col--;
+            const pieceNearBishop: Piece | undefined = board.getPiece(new Square(--bishopCurrentPosition.row, --bishopCurrentPosition.col));
+            if (pieceNearBishop) {
+                break;
+            }
             availableMoves.push(new Square(bishopCurrentPosition.row, bishopCurrentPosition.col));
         }
 
         bishopCurrentPosition = new Square(bishopInitialPosition.row, bishopInitialPosition.col);
         // backwards up diagonal
         while (bishopCurrentPosition.row < gameSettings.BOARD_SIZE - 1 && bishopCurrentPosition.col > 0) {
-            bishopCurrentPosition.row++;
-            bishopCurrentPosition.col--;
+            const pieceNearBishop: Piece | undefined = board.getPiece(new Square(++bishopCurrentPosition.row, --bishopCurrentPosition.col));
+            if (pieceNearBishop) {
+                break;
+            }
             availableMoves.push(new Square(bishopCurrentPosition.row, bishopCurrentPosition.col));
         }
 
         bishopCurrentPosition = new Square(bishopInitialPosition.row, bishopInitialPosition.col);
         // backwards down diagonal
         while (bishopCurrentPosition.row > 0 && bishopCurrentPosition.col < gameSettings.BOARD_SIZE - 1) {
-            bishopCurrentPosition.row--;
-            bishopCurrentPosition.col++;
+            const pieceNearBishop: Piece | undefined = board.getPiece(new Square(--bishopCurrentPosition.row, ++bishopCurrentPosition.col));
+            if (pieceNearBishop) {
+                break;
+            }
             availableMoves.push(new Square(bishopCurrentPosition.row, bishopCurrentPosition.col));
         }
 
