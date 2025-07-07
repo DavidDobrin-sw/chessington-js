@@ -3,11 +3,12 @@ import King from '../../../src/engine/pieces/king';
 import Board from '../../../src/engine/board';
 import Player from '../../../src/engine/player';
 import Square from '../../../src/engine/square';
+import player from "../../../src/engine/player";
 
 describe('King', () => {
 
-    let board;
-    beforeEach(() => board = new Board());
+    let board: Board;
+    beforeEach(() => board = new Board(player.WHITE));
 
     it('can move to adjacent squares', () => {
         const king = new King(Player.WHITE);
