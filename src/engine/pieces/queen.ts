@@ -19,53 +19,53 @@ export default class Queen extends Piece {
     }
 
     private getAvailableMovesDiagonally(board: Board, availableMoves: Square[]) {
-        const queenInitialPosition: Square = board.findPiece(this);
+        const helperPosition: Square = board.findPiece(this);
 
-        let queenCurrentPosition = new Square(queenInitialPosition.row, queenInitialPosition.col);
+        let candidatePosition = new Square(helperPosition.row, helperPosition.col);
         // forwards up diagonal
-        while (queenCurrentPosition.row < gameSettings.BOARD_SIZE - 1 && queenCurrentPosition.col < gameSettings.BOARD_SIZE - 1) {
-            queenCurrentPosition.row++;
-            queenCurrentPosition.col++;
-            availableMoves.push(new Square(queenCurrentPosition.row, queenCurrentPosition.col));
+        while (candidatePosition.row < gameSettings.BOARD_SIZE - 1 && candidatePosition.col < gameSettings.BOARD_SIZE - 1) {
+            candidatePosition.row++;
+            candidatePosition.col++;
+            availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
-        queenCurrentPosition = new Square(queenInitialPosition.row, queenInitialPosition.col);
+        candidatePosition = new Square(helperPosition.row, helperPosition.col);
         // forwards down diagonal
-        while (queenCurrentPosition.row > 0 && queenCurrentPosition.col > 0) {
-            queenCurrentPosition.row--;
-            queenCurrentPosition.col--;
-            availableMoves.push(new Square(queenCurrentPosition.row, queenCurrentPosition.col));
+        while (candidatePosition.row > 0 && candidatePosition.col > 0) {
+            candidatePosition.row--;
+            candidatePosition.col--;
+            availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
-        queenCurrentPosition = new Square(queenInitialPosition.row, queenInitialPosition.col);
+        candidatePosition = new Square(helperPosition.row, helperPosition.col);
         // backwards up diagonal
-        while (queenCurrentPosition.row < gameSettings.BOARD_SIZE - 1 && queenCurrentPosition.col > 0) {
-            queenCurrentPosition.row++;
-            queenCurrentPosition.col--;
-            availableMoves.push(new Square(queenCurrentPosition.row, queenCurrentPosition.col));
+        while (candidatePosition.row < gameSettings.BOARD_SIZE - 1 && candidatePosition.col > 0) {
+            candidatePosition.row++;
+            candidatePosition.col--;
+            availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
-        queenCurrentPosition = new Square(queenInitialPosition.row, queenInitialPosition.col);
+        candidatePosition = new Square(helperPosition.row, helperPosition.col);
         // backwards down diagonal
-        while (queenCurrentPosition.row > 0 && queenCurrentPosition.col < gameSettings.BOARD_SIZE - 1) {
-            queenCurrentPosition.row--;
-            queenCurrentPosition.col++;
-            availableMoves.push(new Square(queenCurrentPosition.row, queenCurrentPosition.col));
+        while (candidatePosition.row > 0 && candidatePosition.col < gameSettings.BOARD_SIZE - 1) {
+            candidatePosition.row--;
+            candidatePosition.col++;
+            availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
     }
 
     private getAvailableMovesLaterally(board:Board, availableMoves: Square[]) {
-        const queenInitialPosition: Square = board.findPiece(this);
+        const queenPosition: Square = board.findPiece(this);
 
         for (let i = 0; i < gameSettings.BOARD_SIZE; i++) {
-            if (i != queenInitialPosition.row) {
-                availableMoves.push(new Square(i,  queenInitialPosition.col));
+            if (i != queenPosition.row) {
+                availableMoves.push(new Square(i,  queenPosition.col));
             }
         }
 
         for (let j = 0; j < gameSettings.BOARD_SIZE; j++) {
-            if (j != queenInitialPosition.col) {
-                availableMoves.push(new Square(queenInitialPosition.row,  j));
+            if (j != queenPosition.col) {
+                availableMoves.push(new Square(queenPosition.row,  j));
             }
         }
     }

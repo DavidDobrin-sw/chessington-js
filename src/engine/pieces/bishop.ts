@@ -12,38 +12,38 @@ export default class Bishop extends Piece {
     public getAvailableMoves(board: Board) {
 
         let availableMoves: Square[] = [];
-        const bishopInitialPosition: Square = board.findPiece(this);
+        const positionHelper: Square = board.findPiece(this);
 
-        let bishopCurrentPosition = new Square(bishopInitialPosition.row, bishopInitialPosition.col);
+        let candidatePosition = new Square(positionHelper.row, positionHelper.col);
         // forwards up diagonal
-        while (bishopCurrentPosition.row < gameSettings.BOARD_SIZE - 1 && bishopCurrentPosition.col < gameSettings.BOARD_SIZE - 1) {
-            bishopCurrentPosition.row++;
-            bishopCurrentPosition.col++;
-            availableMoves.push(new Square(bishopCurrentPosition.row, bishopCurrentPosition.col));
+        while (candidatePosition.row < gameSettings.BOARD_SIZE - 1 && candidatePosition.col < gameSettings.BOARD_SIZE - 1) {
+            candidatePosition.row++;
+            candidatePosition.col++;
+            availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
-        bishopCurrentPosition = new Square(bishopInitialPosition.row, bishopInitialPosition.col);
+        candidatePosition = new Square(positionHelper.row, positionHelper.col);
         // forwards down diagonal
-        while (bishopCurrentPosition.row > 0 && bishopCurrentPosition.col > 0) {
-            bishopCurrentPosition.row--;
-            bishopCurrentPosition.col--;
-            availableMoves.push(new Square(bishopCurrentPosition.row, bishopCurrentPosition.col));
+        while (candidatePosition.row > 0 && candidatePosition.col > 0) {
+            candidatePosition.row--;
+            candidatePosition.col--;
+            availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
-        bishopCurrentPosition = new Square(bishopInitialPosition.row, bishopInitialPosition.col);
+        candidatePosition = new Square(positionHelper.row, positionHelper.col);
         // backwards up diagonal
-        while (bishopCurrentPosition.row < gameSettings.BOARD_SIZE - 1 && bishopCurrentPosition.col > 0) {
-            bishopCurrentPosition.row++;
-            bishopCurrentPosition.col--;
-            availableMoves.push(new Square(bishopCurrentPosition.row, bishopCurrentPosition.col));
+        while (candidatePosition.row < gameSettings.BOARD_SIZE - 1 && candidatePosition.col > 0) {
+            candidatePosition.row++;
+            candidatePosition.col--;
+            availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
-        bishopCurrentPosition = new Square(bishopInitialPosition.row, bishopInitialPosition.col);
+        candidatePosition = new Square(positionHelper.row, positionHelper.col);
         // backwards down diagonal
-        while (bishopCurrentPosition.row > 0 && bishopCurrentPosition.col < gameSettings.BOARD_SIZE - 1) {
-            bishopCurrentPosition.row--;
-            bishopCurrentPosition.col++;
-            availableMoves.push(new Square(bishopCurrentPosition.row, bishopCurrentPosition.col));
+        while (candidatePosition.row > 0 && candidatePosition.col < gameSettings.BOARD_SIZE - 1) {
+            candidatePosition.row--;
+            candidatePosition.col++;
+            availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
         return availableMoves;
