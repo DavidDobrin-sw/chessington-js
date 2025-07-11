@@ -23,33 +23,44 @@ export default class Queen extends Piece {
 
         let candidatePosition = new Square(helperPosition.row, helperPosition.col);
         // forwards up diagonal
+
         while (candidatePosition.row < gameSettings.BOARD_SIZE - 1 && candidatePosition.col < gameSettings.BOARD_SIZE - 1) {
-            candidatePosition.row++;
-            candidatePosition.col++;
+            const pieceNearQueen: Piece | undefined = board.getPiece(new Square(++candidatePosition.row, ++candidatePosition.col));
+            if (pieceNearQueen) {
+                break;
+            }
             availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
         candidatePosition = new Square(helperPosition.row, helperPosition.col);
         // forwards down diagonal
+
         while (candidatePosition.row > 0 && candidatePosition.col > 0) {
-            candidatePosition.row--;
-            candidatePosition.col--;
+            const pieceNearQueen: Piece | undefined = board.getPiece(new Square(--candidatePosition.row, --candidatePosition.col));
+            if (pieceNearQueen) {
+                break;
+            }
             availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
         candidatePosition = new Square(helperPosition.row, helperPosition.col);
         // backwards up diagonal
+
         while (candidatePosition.row < gameSettings.BOARD_SIZE - 1 && candidatePosition.col > 0) {
-            candidatePosition.row++;
-            candidatePosition.col--;
+            const pieceNearQueen: Piece | undefined = board.getPiece(new Square(++candidatePosition.row, --candidatePosition.col));
+            if (pieceNearQueen) {
+                break;
+            }
             availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
 
         candidatePosition = new Square(helperPosition.row, helperPosition.col);
         // backwards down diagonal
         while (candidatePosition.row > 0 && candidatePosition.col < gameSettings.BOARD_SIZE - 1) {
-            candidatePosition.row--;
-            candidatePosition.col++;
+            const pieceNearQueen: Piece | undefined = board.getPiece(new Square(--candidatePosition.row, ++candidatePosition.col));
+            if (pieceNearQueen) {
+                break;
+            }
             availableMoves.push(new Square(candidatePosition.row, candidatePosition.col));
         }
     }
@@ -57,16 +68,42 @@ export default class Queen extends Piece {
     private getAvailableMovesLaterally(board:Board, availableMoves: Square[]) {
         const queenPosition: Square = board.findPiece(this);
 
-        for (let i = 0; i < gameSettings.BOARD_SIZE; i++) {
-            if (i != queenPosition.row) {
-                availableMoves.push(new Square(i,  queenPosition.col));
+
+        for (let i = queenPosition.row + 1; i < gameSettings.BOARD_SIZE; i++) {
+            const pieceNearRook: Piece | undefined = board.getPiece(new Square(i, queenPosition.col));
+            if (pieceNearRook) {
+                break;
             }
+            availableMoves.push(new Square(i,  queenPosition.col));
+
         }
 
-        for (let j = 0; j < gameSettings.BOARD_SIZE; j++) {
-            if (j != queenPosition.col) {
-                availableMoves.push(new Square(queenPosition.row,  j));
+        for (let i = queenPosition.row - 1; i >= 0; i--) {
+            const pieceNearRook: Piece | undefined = board.getPiece(new Square(i, queenPosition.col));
+            if (pieceNearRook) {
+                break;
             }
+
+            availableMoves.push(new Square(i,  queenPosition.col));
+
+        }
+
+        for (let j = queenPosition.col + 1; j < gameSettings.BOARD_SIZE; j++) {
+            const pieceNearRook: Piece | undefined = board.getPiece(new Square(queenPosition.row, j));
+            if (pieceNearRook) {
+                break;
+            }
+
+            availableMoves.push(new Square(queenPosition.row,  j));
+        }
+
+        for (let j = queenPosition.col - 1; j >= 0; j--) {
+            const pieceNearRook: Piece | undefined = board.getPiece(new Square(queenPosition.row, j));
+            if (pieceNearRook) {
+                break;
+            }
+
+            availableMoves.push(new Square(queenPosition.row,  j));
         }
     }
 }
